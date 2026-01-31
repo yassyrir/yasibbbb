@@ -1,11 +1,13 @@
-let currentCommand = '';
+// api/setCommand.js
+let savedCommand = '';
 
 export default function handler(req, res) {
   if (req.method === 'POST') {
-    currentCommand = req.body.command;
-    console.log('Perintah diterima:', currentCommand);
-    res.status(200).json({ success: true, command: currentCommand });
-  } else {
-    res.status(405).send('Method Not Allowed');
+    savedCommand = req.body.command;
+    console.log('Command saved:', savedCommand);
+    return res.status(200).json({ success: true, command: savedCommand });
   }
+  
+  // Jika method bukan POST
+  return res.status(405).json({ error: 'Method not allowed' });
 }
