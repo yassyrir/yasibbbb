@@ -1,9 +1,9 @@
-let currentCommand = '';
+// api/getCommand.js
+let savedCommand = '';
 
 export default function handler(req, res) {
   if (req.method === 'GET') {
-    res.status(200).json({ command: currentCommand });
-  } else {
-    res.status(405).send('Method Not Allowed');
+    return res.status(200).json({ command: savedCommand });
   }
+  return res.status(405).json({ error: 'Method not allowed' });
 }
