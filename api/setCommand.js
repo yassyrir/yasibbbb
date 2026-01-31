@@ -1,13 +1,11 @@
-// api/setCommand.js
-let savedCommand = '';
+// Gunakan global object dengan key unik
+global.latestCommand = global.latestCommand || '';
 
 export default function handler(req, res) {
   if (req.method === 'POST') {
-    savedCommand = req.body.command;
-    console.log('Command saved:', savedCommand);
-    return res.status(200).json({ success: true, command: savedCommand });
+    global.latestCommand = req.body.command;
+    console.log('SET: ', global.latestCommand);
+    return res.status(200).json({ success: true, command: global.latestCommand });
   }
-  
-  // Jika method bukan POST
   return res.status(405).json({ error: 'Method not allowed' });
 }
